@@ -5,6 +5,7 @@ namespace Eget_arbete
     class Program
     {
         static public bool done = false;
+        static public string place = "Dungeon";
 
         public static int imgWidth = 40, imgHeight = 20;
         public static char[,] image = new char[imgWidth,imgHeight];
@@ -16,36 +17,34 @@ namespace Eget_arbete
         {
             //Denna kod kommer fortsätta att köras tills att "done" är sant.
             while (! done) {
+                switch (place) {
+                    case "Dungeon":
                     if (wait == 0) {
-                    ClearCanvas();
-                    Draw.Dungeon();
-                    Player.Exist();
-                    PrintCanvas();
+                        ClearCanvas();
+                        Draw.Dungeon();
+                        Player.Exist();
+                        PrintCanvas();
 
-                    //"wait" är till för att begränsa hur ofta en ny bild kan visas, om den visas för ofta så ser saker konstiga ut
-                    //Om du vill se, tillfälligt ändra "wait = 10" till "wait = 1"
-                    wait = 10;
-                } else {
-                    //Om man håller in en rikting under väntetiden så sparas signalen den tills nästa "ReadKey()"
-                    //Det här "äter" dessa signaler.
-                    if (Console.KeyAvailable) {
-                        Console.ReadKey();
+                        //"wait" är till för att begränsa hur ofta en ny bild kan visas, om den visas för ofta så ser saker konstiga ut
+                        //Om du vill se, tillfälligt ändra "wait = 10" till "wait = 1"
+                        wait = 10;
                     } else {
-                        wait = 1;
+                        //Om man håller in en rikting under väntetiden så sparas signalen den tills nästa "ReadKey()"
+                        //Det här "äter" dessa signaler.
+                        if (Console.KeyAvailable) {
+                            Console.ReadKey();
+                        } else {
+                            wait = 1;
+                        }
                     }
+                    System.Threading.Thread.Sleep(10);
+                    wait --;
+                    break;
+                    case "slime":
+                    Draw.Slime();
+                    break;
                 }
-                System.Threading.Thread.Sleep(10);
-                wait --;
-
-                //System.Threading.Thread.Sleep(100);
-                /*if (Console.KeyAvailable) {
-                    if (Console.ReadKey().Key == ConsoleKey.Escape) {
-                        done = true;
-                    }
-                }*/
             }
-
-
         }
 
         static void ClearCanvas () {
@@ -58,9 +57,13 @@ namespace Eget_arbete
         }
 
         static void PrintCanvas () {
-            for (int j = 0; j < imgHeight; j ++) {
-                for (int i = 0; i < imgWidth; i ++) {
+            for (int j = Player.y - 5; j <= Player.y + 5; j ++) {
+                for (int i = Player.x - 5; i <= Player.x + 5; i ++) {
+                    if (j < 0 || j > imgHeight - 1 || i < 0 || i > imgWidth - 1) {
+                        finImg = finImg + "#";
+                    } else {
                     finImg = finImg + Convert.ToString(image[i,j]);
+                    }
                 }
                 finImg = finImg + "\n";
             }

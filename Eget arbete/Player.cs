@@ -4,7 +4,7 @@ namespace Eget_arbete
 {
     public class Player
     {        
-        public static int x = 9, y = 2;
+        public static int x = 7, y = 2;
         public static void Exist () {
             switch (Console.ReadKey().Key) {
                 case ConsoleKey.RightArrow:
@@ -44,6 +44,10 @@ namespace Eget_arbete
                     break;
             }
             Program.image[x,y] = 'ÿ';
+            Console.WriteLine(x + " " + y);
+            if (x == 10 && y == 17) {
+                Program.place = "slime";
+            }
         }
     }
 }
