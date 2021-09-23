@@ -92,7 +92,7 @@ namespace Eget_arbete
                 //-----------------------------------
                   "You come across a small pool of  ",
                   "water, illuminated by two glowing",
-                  "blue crystals.                  "
+                  "blue crystals.                   "
             );
             TextBox(
                 //-----------------------------------
