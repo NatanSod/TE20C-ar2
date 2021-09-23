@@ -11,10 +11,27 @@ namespace Eget_arbete
         public static char[,] image = new char[imgWidth,imgHeight];
         static string finImg;
         static int wait = 0;
+        public static bool[] flag = new bool[1];
 
+        static void Start() {
+            Console.WindowHeight = 40;
+
+            for (int i = 0; i < flag.Length; i ++) {
+                flag[i] = false;
+            }
+            for (int i = 0; i < 30; i ++) {
+                Console.WriteLine();
+            }
+            Draw.Dungeon();
+            Player.Show();
+            PrintCanvas();
+
+        }
 
         static void Main(string[] args)
         {
+            Write.Intro();
+            Start();
             //Denna kod kommer fortsätta att köras tills att "done" är sant.
             while (! done) {
                 switch (place) {
@@ -42,6 +59,21 @@ namespace Eget_arbete
                     break;
                     case "slime":
                     Draw.Slime();
+                    if (Console.ReadLine().ToLower() == "back") {
+                        place = "Dungeon";
+                    }
+                    break;
+                    case "lookPool":
+                    Draw.LookPool();
+                    Write.LookPool();
+
+                    ClearCanvas();
+                    Draw.Dungeon();
+                    Player.Show();
+                    PrintCanvas();
+
+                    flag[0] = true;
+                    place = "Dungeon";
                     break;
                 }
             }
@@ -57,8 +89,8 @@ namespace Eget_arbete
         }
 
         static void PrintCanvas () {
-            for (int j = Player.y - 5; j <= Player.y + 5; j ++) {
-                for (int i = Player.x - 5; i <= Player.x + 5; i ++) {
+            for (int j = Player.y - 6; j <= Player.y + 6; j ++) {
+                for (int i = Player.x - 6; i <= Player.x + 6; i ++) {
                     if (j < 0 || j > imgHeight - 1 || i < 0 || i > imgWidth - 1) {
                         finImg = finImg + "#";
                     } else {

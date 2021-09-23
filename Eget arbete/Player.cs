@@ -45,9 +45,10 @@ namespace Eget_arbete
             }
             Program.image[x,y] = 'ÿ';
             Console.WriteLine(x + " " + y);
-            if (x == 10 && y == 17) {
-                Program.place = "slime";
-            }
+        }
+
+        public static void Show () {
+            Program.image[x,y] = 'ÿ';
         }
     }
 }
