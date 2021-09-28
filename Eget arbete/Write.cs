@@ -12,7 +12,7 @@ namespace Eget_arbete
                   ""
             );
         */
-        public static void Intro () {
+        public static void Intro () { 
             TextBox(
                 //-----------------------------------
                   "As you return to consciousness   ",
@@ -100,6 +100,83 @@ namespace Eget_arbete
                   "Begging you to take a dip in it. ",
                   "                                 "
             );
+        }
+
+        public static void DipPool () {
+          TextBox(
+                //-----------------------------------
+                  "You take a step into the pool,   ",
+                  "the cold water instinctually     ",
+                  "makes you pull back.             "
+            );
+            TextBox(
+                //-----------------------------------
+                  "After a few moments, you try     ",
+                  "again.                           ",
+                  "                                 "
+            );
+            TextBox(
+                //-----------------------------------
+                  "The water is just as cold.       ",
+                  "However, this time you don't pull",
+                  "back.                            "
+            );
+            TextBox(
+                //-----------------------------------
+                  "This time, the cold has a        ",
+                  "comfortable familiarity to it.   ",
+                  "                                 "
+            );
+            TextBox(
+                //-----------------------------------
+                  "It makese you want to go deeper  ",
+                  "into the pool.                   ",
+                  "                                 "
+            );
+        }
+        
+        public static void InPool () {
+            TextBox(
+                //-----------------------------------
+                  "You dip your head in the pool.",
+                  "The soothing water surrounds  ",
+                  "you and you drift into sleep. "
+            );
+            TextBox(
+                //-----------------------------------
+                  "This is the end of this path     ",
+                  "because I don't have time to make",
+                  "more. Hope you had fun!          "
+            );
+            Program.done = true;
+        }
+        
+        public static void Slime () {
+            TextBox(
+                //-----------------------------------
+                  "A weird... thing, stands         ",
+                  "before you.                      ",
+                  "                                 "
+            );
+            TextBox(
+                //-----------------------------------
+                  "Before you have time to react it ",
+                  "jumps and strikes you in the     ",
+                  "head.                            "
+            );
+            TextBox(
+                //-----------------------------------
+                  "You are dead.                    ",
+                  "                                 ",
+                  "                                 "
+            );
+            TextBox(
+                //-----------------------------------
+                  "Sorry for the abrupt ending but I",
+                  "Don't have time for more.        ",
+                  "                                 "
+            );
+            Program.done = true;
         }
 
         static void TextBox (string text1, string text2, string text3) {

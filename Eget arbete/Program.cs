@@ -11,21 +11,24 @@ namespace Eget_arbete
         public static char[,] image = new char[imgWidth,imgHeight];
         static string finImg;
         static int wait = 0;
-        public static bool[] flag = new bool[1];
+        public static bool[] flag = new bool[2];
 
         static void Start() {
-            Console.WindowHeight = 40;
-
             for (int i = 0; i < flag.Length; i ++) {
                 flag[i] = false;
             }
             for (int i = 0; i < 30; i ++) {
                 Console.WriteLine();
             }
+            
+            StartDungeon();
+        }
+
+        static void StartDungeon () {
+            ClearCanvas();
             Draw.Dungeon();
             Player.Show();
             PrintCanvas();
-
         }
 
         static void Main(string[] args)
@@ -42,11 +45,11 @@ namespace Eget_arbete
                         Player.Exist();
                         PrintCanvas();
 
-                        //"wait" är till för att begränsa hur ofta en ny bild kan visas, om den visas för ofta så ser saker konstiga ut
-                        //Om du vill se, tillfälligt ändra "wait = 10" till "wait = 1"
+                        //"wait" är till för att begränsa hur ofta en ny bild kan visas, om den visas för ofta så ser saker konstiga ut.
+                        //Om du vill se, tillfälligt ändra "wait = 10" till "wait = 1".
                         wait = 10;
                     } else {
-                        //Om man håller in en rikting under väntetiden så sparas signalen den tills nästa "ReadKey()"
+                        //Om man håller in en rikting under väntetiden så sparas signalen tills nästa "ReadKey()" och skapar en kö som fortsätter när knappen släpps.
                         //Det här "äter" dessa signaler.
                         if (Console.KeyAvailable) {
                             Console.ReadKey();
@@ -57,23 +60,38 @@ namespace Eget_arbete
                     System.Threading.Thread.Sleep(10);
                     wait --;
                     break;
+
                     case "slime":
                     Draw.Slime();
-                    if (Console.ReadLine().ToLower() == "back") {
-                        place = "Dungeon";
-                    }
+                    Write.Slime();
+                    Console.ReadLine();
+
+                    StartDungeon();
+
+                    place = "Dungeon";
                     break;
+
                     case "lookPool":
                     Draw.LookPool();
                     Write.LookPool();
 
-                    ClearCanvas();
-                    Draw.Dungeon();
-                    Player.Show();
-                    PrintCanvas();
+                    StartDungeon();
 
                     flag[0] = true;
                     place = "Dungeon";
+                    break;
+
+                    case "dipPool":
+                    Write.DipPool();
+
+                    StartDungeon();
+
+                    flag[1] = true;
+                    place = "Dungeon";
+                    break;
+
+                    case "inPool":
+                    Write.InPool();
                     break;
                 }
             }

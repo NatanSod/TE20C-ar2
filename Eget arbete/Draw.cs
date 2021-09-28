@@ -43,7 +43,7 @@ namespace Eget_arbete
                 "     \\   /                 ``--..__        __,,--´´                 \\   /     " + "\n" +
                 "      `v´ `.                     _ ;;----:: _                     ,´ `v´      " + "\n" +
                 " _     _    `_               - ´              ` -               _´    _     _ " + "\n" +
-                "   \\__|+|__/#/`.                                              ,´\\#\\__|+|__/   " + "\n" +
+                "   \\__|+|__/#/`.                                              ,´\\#\\ __|+|__/   " + "\n" +
                 "  |__   _-+#|   `.                                          ,´   |#+-_   __|  " + "\n" +
                 "   |    -+#|      `.                                      ,´      |#+-    |   " + "\n" +
                 "   |    -+#|        `.                                  ,´        |#+-    |   " + "\n" +
@@ -105,6 +105,16 @@ namespace Eget_arbete
                 if (! Program.flag[0]) {
                     Program.place = "lookPool";
                 }
+                return true;
+
+                case '~':
+                if (! Program.flag[1]) {
+                    Program.place = "dipPool";
+                }
+                return true;
+
+                case 'O': 
+                Program.place = "inPool";
                 return true;
 
                 case 'ö':
