@@ -6,6 +6,7 @@ namespace Skiffer
     {
         static void Main(string[] args)
         {
+            //Jag gjorde det på ett eget sätt som jag personligen tycker är lättare för utmaningarna.
             //Skapar variablerna som håller koll på dom "riktiga" och skiftade bokstävernra.
             string bokstäver = "abcdefghijklmnopqrstuvwxyzåäö";
             string skiffer = "";
@@ -45,7 +46,7 @@ namespace Skiffer
                 while (true) {
                     //Det här händer när den har gått igenom alla bokstäver, vilket betyder att det inte är en bokstav, 
                     //så den krypteras inte, för det är antingen en siffra, ett mellanslag eller ett annat konstigt tecken.
-                    if (j + 1 == bokstäver.Length) {
+                    if (j == bokstäver.Length) {
                         krypteratMeddelande += meddelande[i];
                         break;
                     }
@@ -58,6 +59,39 @@ namespace Skiffer
                 }
             }
             Console.WriteLine(krypteratMeddelande);
+            
+            //Försökte göra det på ett sätt som yttnytjade (int), men det blev mer komplicerat och jag blev inte riktigt klar.
+            /*
+            meddelande = meddelande.ToUpper();
+            krypteratMeddelande = "";
+            for (int i = 0; i < meddelande.Length; i++) {
+                if ((int)meddelande[i] >= 65 && (int)meddelande[i] <= 90) {
+                    if ((int)meddelande[i] + steg <= 90) {
+                        krypteratMeddelande += (char)(((int)meddelande[i]) + steg);
+
+                    } else if ((int)meddelande[i] + steg <= 93) {
+                        krypteratMeddelande += (char)(((int)meddelande[i]) + steg + 106);
+
+                    } else {
+                        krypteratMeddelande += (char)(((int)meddelande[i]) + steg - bokstäver.Length);
+                    }
+
+                } else if ((int)meddelande[i] >= 197 && (int)meddelande[i] <= 199) {
+
+                    if ((int)meddelande[i] + steg <= 199) {
+                        krypteratMeddelande += (char)(((int)meddelande[i]) + steg);
+
+                    } else if ((int)meddelande[i] + steg - bokstäver.Length < 197) {
+                        krypteratMeddelande += (char)(((int)meddelande[i]) + steg) - 106;
+                    } else {
+                        krypteratMeddelande += (char)(((int)meddelande[i]) + steg - bokstäver.Length);
+                    }
+                } else {
+                    krypteratMeddelande += meddelande[i];
+                }
+            }
+            Console.WriteLine(krypteratMeddelande);
+            */
         }
     }
 }
